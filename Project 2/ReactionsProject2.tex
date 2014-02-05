@@ -19,12 +19,20 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+\usepackage[section]{placeins}
 
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 %\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
 \usepackage[english]{babel} % English language/hyphenation
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
 \usepackage{units}
+\makeatletter
+\AtBeginDocument{%
+  \expandafter\renewcommand\expandafter\subsection\expandafter{%
+    \expandafter\@fb@secFB\subsection
+  }%
+}
+\makeatother
 \usepackage{hyperref}
 \usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
 \usepackage{caption}
@@ -73,6 +81,116 @@
 %----------------------------------------------------------------------------------------
 %	PROBLEM 1
 %----------------------------------------------------------------------------------------
+\section{Derivations}
+
+
+
+\subsection{}
+
+Outside the finite range $R_{n}$ of the nuclear potential, the wave function expressed in terms of partial waves is
+
+\begin{equation*}
+\psi(R,\theta)\overset{R>R_{n}}{\rightarrow}\frac{1}{kR}\sum_{L=0}^{\infty}\left(2L+1\right)i^{L}P_{L}\left(\textrm{cos}\left(\theta\right)\right)A_{L}\left[H_{L}^{-}\left(0,kR\right)-S_{L}H_{L}^{+}\left(0,kR\right)\right]
+\end{equation*}
+
+%\begin{equation*}
+%e^{ikz}=\sum_{L=0}^{\infty}(2L+1)i^{L}P_{L}(\textrm{cos}(\theta))\frac{1}{kR}\frac{i}{2}\left[H_{L}^{-}(0,kR)-H_{L}^{+}(0,kR)\right]
+%\end{equation*}
+
+\noindent We also know that the asymptotic form of the wave function is comprised of an incoming plane wave (which is decomposed into partial waves) and outgoing spherical waves
+
+\begin{align*}
+\psi^{\textrm{asym}}(R,\theta)&=e^{ikz}+f(\theta)\frac{e^{ikR}}{R}\\
+&=\sum_{L=0}^{\infty}(2L+1)i^{L}P_{L}(\textrm{cos}(\theta))\frac{1}{kR}\frac{i}{2}\left[H_{L}^{-}(0,kR)-H_{L}^{+}(0,kR)\right]+f(\theta)\frac{e^{ikR}}{R}\\
+\end{align*}
+
+\noindent Equating these two expressions gives
+
+\tiny
+\begin{align*}
+\psi(R>R_{n},\theta)&=\psi^{\textrm{asym}}\\
+\frac{1}{kR}\sum_{L=0}^{\infty}\left(2L+1\right)i^{L}P_{L}\left(\textrm{cos}\left(\theta\right)\right)A_{L}\left[H_{L}^{-}\left(0,kR\right)-S_{L}H_{L}^{+}\left(0,kR\right)\right]&=\sum_{L=0}^{\infty}(2L+1)i^{L}P_{L}(\textrm{cos}(\theta))\frac{1}{kR}\frac{i}{2}\left[H_{L}^{-}(0,kR)-H_{L}^{+}(0,kR)\right]+f(\theta)\frac{e^{ikR}}{R}\\
+\left(kR\right)\left\{\frac{1}{kR}\sum_{L=0}^{\infty}\left(2L+1\right)i^{L}P_{L}\left(\textrm{cos}\left(\theta\right)\right)A_{L}\left[H_{L}^{-}\left(0,kR\right)-S_{L}H_{L}^{+}\left(0,kR\right)\right]\right\}&=\left(kR\right)\left\{\sum_{L=0}^{\infty}(2L+1)i^{L}P_{L}(\textrm{cos}(\theta))\frac{1}{kR}\frac{i}{2}\left[H_{L}^{-}(0,kR)-H_{L}^{+}(0,kR)\right]+f(\theta)\frac{e^{ikR}}{R}\right\}\\
+\sum_{L=0}^{\infty}\left(2L+1\right)i^{L}P_{L}\left(\textrm{cos}\left(\theta\right)\right)A_{L}\left[H_{L}^{-}\left(0,kR\right)-S_{L}H_{L}^{+}\left(0,kR\right)\right]&=\sum_{L=0}^{\infty}(2L+1)i^{L}P_{L}(\textrm{cos}(\theta))\frac{i}{2}\left[H_{L}^{-}(0,kR)-H_{L}^{+}(0,kR)\right]+kf(\theta)e^{ikR}\\
+\sum_{L=0}^{\infty}\left(2L+1\right)i^{L}P_{L}\left(\textrm{cos}\left(\theta\right)\right)A_{L}\left[i^{L}e^{-ikR}-S_{L}i^{-L}e^{ikR}\right]&=\sum_{L=0}^{\infty}(2L+1)i^{L}P_{L}(\textrm{cos}(\theta))\frac{i}{2}\left[i^{L}e^{-ikR}-S_{L}i^{-L}e^{ikR}\right]+kf(\theta)e^{ikR}\\
+\end{align*}
+\normalsize
+
+\noindent The asymptotic forms of the Hankel functions were used in the last step. Now the terms with $e^{ikR}$ and $e^{-ikR}$ factors are collected together separately.
+
+\scriptsize
+\begin{equation*}
+e^{ikR}\left[ \sum_{L=0}^{\infty}(2L+1)i^{L}P_{L}(\textrm{cos}(\theta)) \left\{A_{L}S_{L}i^{-L}-\frac{i}{2}i^{-L}\right\}+kf(\theta) \right]=e^{-ikR}\left[ \sum_{L=0}^{\infty}(2L+1)i^{L}P_{L}(\textrm{cos}(\theta)) \left\{A_{L}i^{L}-\frac{i}{2}i^{L}\right\} \right]
+\end{equation*}
+\normalsize
+
+\noindent Since the expressions in the square brackets are independent of R, and $e^{\pm ikr}$ are linearly independent, the expressions in the square brackets must equal zero independently. Also, due to the orthogonality of the Legendre Polynomials, for the second expression in the square brackets to be zero for all L, then each term in the sum must be zero. This means $A_{L}=i/2$. % Consider a*cos(x) = b*sin(x). cos(x) and sin(x) are linearly independent. For this to be true for all x, then a and b must equal 0.
+
+Using $A_{L}=i/2$ in the first term gives
+
+\begin{align*}
+&e^{ikR}\left[ \sum_{L=0}^{\infty}(2L+1)i^{L}P_{L}(\textrm{cos}(\theta)) \left\{A_{L}S_{L}i^{-L}-\frac{i}{2}i^{-L}\right\}+kf(\theta) \right]=0\\
+&\Rightarrow \left[ \sum_{L=0}^{\infty}(2L+1)i^{L}P_{L}(\textrm{cos}(\theta)) \left\{\left(\frac{i}{2}\right)S_{L}i^{-L}-\frac{i}{2}i^{-L}\right\}+kf(\theta) \right]=0\\
+&\Rightarrow \sum_{L=0}^{\infty}(2L+1)i^{L}P_{L}(\textrm{cos}(\theta))\left(\frac{i}{2}i^{-L}\right)(S_{L}-1) = -kf(\theta)\\
+&\Rightarrow \left(\frac{i}{2}\right)\left(\frac{-1}{k}\right)\left(\frac{i}{i}\right)\sum_{L=0}^{\infty}(2L+1)P_{L}(\textrm{cos}(\theta))(S_{L}-1) = f(\theta)\\
+&\Rightarrow f(\theta)=\frac{1}{2ik}\sum_{L=0}^{\infty}(2L+1)P_{L}(\textrm{cos}(\theta))(S_{L}-1)\\
+\end{align*}
+
+\subsection{}
+
+The scattering amplitude can be written as
+
+\begin{align*}
+f(\theta)&=\frac{1}{2ik} \sum_{L=0}^{\infty} (2L+1)P_{L}(\textrm{cos}(\theta))(S_{L}-1)\\
+&=\frac{1}{2ik} \sum_{L=0}^{\infty} (2L+1)P_{L}(\textrm{cos}(\theta))\left[ e^{2i\delta_{L}}-1\right]\\
+&=\frac{1}{2ik} \sum_{L=0}^{\infty} (2L+1)P_{L}(\textrm{cos}(\theta))\left[ e^{i\delta_{L}}(e^{i\delta_{L}}-e^{-i\delta_{L}})\right]\\
+&=\frac{1}{2ik} \sum_{L=0}^{\infty} (2L+1)P_{L}(\textrm{cos}(\theta))\left[ 2ie^{i\delta_{L}}\textrm{sin}(\delta_{L})\right]\\
+&=\frac{1}{k} \sum_{L=0}^{\infty} (2L+1)P_{L}(\textrm{cos}(\theta))e^{i\delta_{L}}\textrm{sin}(\delta_{L})\\
+\end{align*}
+
+Using this, the total elastic cross section for neutrons is 
+
+\footnotesize
+\begin{align*}
+\sigma_{\textrm{el}}&=\int |f(\theta)|^{2}d\Omega\\
+&=\int_{0}^{2\pi} d\phi \int_{0}^{\pi} |f(\theta)|^{2} \textrm{sin}(\theta) d\theta\\
+&=\int_{0}^{2\pi} d\phi \int_{0}^{\pi} \left[\frac{1}{k} \sum_{L'=0}^{\infty} (2L'+1)P_{L'}(\textrm{cos}(\theta))e^{i\delta_{L'}}\textrm{sin}(\delta_{L'})\right]^{*}\left[\frac{1}{k} \sum_{L=0}^{\infty} (2L+1)P_{L}(\textrm{cos}(\theta))e^{i\delta_{L}}\textrm{sin}(\delta_{L})\right]\textrm{sin}(\theta)d\theta\\
+&=\frac{2\pi}{k^{2}}\sum_{L'=0}^{\infty}\sum_{L=0}^{\infty}(2L'+1)(2L+1)e^{-i\delta_{L'}}\textrm{sin}(\delta_{L'})e^{i\delta_{L}}\textrm{sin}(\delta_{L})\left[\int_{0}^{\pi}P_{L'}(\textrm{cos}(\theta))P_{L}(\textrm{cos}(\theta))\textrm{sin}(\theta)d\theta \right]\\
+&=\frac{2\pi}{k^{2}}\sum_{L'=0}^{\infty}\sum_{L=0}^{\infty}(2L'+1)(2L+1)e^{-i\delta_{L'}}\textrm{sin}(\delta_{L'})e^{i\delta_{L}}\textrm{sin}(\delta_{L})\left[\frac{2}{2L+1}\delta_{LL'} \right]\\
+&=\frac{2\pi}{k^{2}}\sum_{L'=0}^{\infty}(2L'+1)(2L'+1)e^{-i\delta_{L'}}\textrm{sin}(\delta_{L'})e^{i\delta_{L'}}\textrm{sin}(\delta_{L'})\frac{2}{2L'+1}\\
+&=\frac{4\pi}{k^{2}}\sum_{L'=0}^{\infty}(2L'+1)\textrm{sin}^{2}(\delta_{L'})
+\end{align*}
+\normalsize
+
+Relabeling $L'$ to $L$ gives the desired result
+
+\begin{equation*}
+\sigma_{\textrm{el}}=\frac{4\pi}{k^{2}}\sum_{L=0}^{\infty}(2L+1)\textrm{sin}^{2}(\delta_{L})
+\end{equation*}
+
+\subsection{}
+
+If considering proton scattering instead of neutron scattering, the Coulomb interaction must be included in the calculation of the elastic scattering phase shift. The Coulomb interaction is included by modifying the asymptotic forms of the Hankel functions, $H_{L}^{\pm}$. The asymptotic form of the Hankel functions are now $H_{L}^{\pm} \left( \eta, \rho \right) \sim e^{i\Theta}$ where $\Theta= \left[ \rho - L \frac{\pi}{2} + \sigma_{L}\left( \eta \right) - \eta \textrm{ln} \left(2 \rho \right) \right]$ and $\sigma_{L} \left( \eta \right) = \textrm{arg}\Gamma\left(1+L+i\eta \right)$ is the Coulomb phase shift. The infinite range of the Coulomb potential is reflected in the term $\textrm{ln} \left(2 \rho \right)$, which never goes away for large $\rho$.
+
+\section{Part II}
+
+\begin{align*}
+\sigma_{\textrm{el}} = \frac{\pi}{k_{i}^{2}}\frac{1}{\left( 2I_{p_{i}}+1 \right)\left(2I_{t_{i}}+1 \right)} \sum_{J_{\textrm{tot}}\pi\alpha_{i}} \left(2J_{\textrm{tot}}+1 \right)|1-\textbf{S}_{\alpha_{i}\alpha_{i}}^{J_{\textrm{tot}}\pi}|^{2}
+\end{align*}
+
+\begin{align*}
+\sigma_{\textrm{tot}} &= \sigma_{\textrm{R}} + \sigma_{\textrm{el}} \\
+& = \frac{2\pi}{k_{i}^{2}} \frac{1}{\left( 2I_{p_{i}}+1 \right)\left(2I_{t_{i}}+1 \right)} \sum_{J_{\textrm{tot}}\pi\alpha_{i}} \left( 2J_{\textrm{tot}} + 1\right) \left[ 1 - \textrm{Re} \textbf{S}_{\alpha_{i}\alpha_{i}}^{J_{\textrm{tot}}\pi}\right] \\  
+\end{align*}
+
+\begin{align*}
+\sigma_{A} = \sigma_{R} - \sum_{xpt \neq x_{i}p_{i}t_{i}} \sigma_{xpt}
+\end{align*}
+
+\begin{align*}
+\sigma_{A} = \frac{2}{\hbar v_{i}} \frac{4\pi}{k_{i}^{2}} \sum_{J_{\textrm{tot}} \pi \alpha_{i} \alpha} \int_{0}^{\infty} \left[ -W_{\alpha} \left( R_{x} \right) \right] | \psi_{\alpha \alpha_{i}}^{J_{\textrm{tot}}\pi} \left( R_{x} \right)|^{2} dR_{x}
+\end{align*}
+
 
 \section{Target Selection}
 
@@ -95,6 +213,11 @@ Parity & +
 \end{tabular}
 \end{table}
 \end{center}
+
+\section{ Potential References}
+
+\subsection{Protons} A. J. Koning, J. P. Delaroche, Nucl. Phys. A713, 231 (2003). Using the Reference Input Parameter Library, this corresponds to the OMP index of 4421. The specific URL is \url{https://www-nds.iaea.org/cgi-bin/ripl_om_param.pl?Z=28&A=58&ID=4421&E1=0.1&E2=150}.
+\subsection{Neutrons}A. J. Koning, J. P. Delaroche, Nucl. Phys. A713, 231 (2003). Using the Reference Input Parameter Library, this corresponds to the OMP index of 4117. The specific URL is \url{https://www-nds.iaea.org/cgi-bin/ripl_om_param.pl?Z=28&A=58&ID=1417&E1=0.1&E2=150}.
 
 
 \section{Pointlike and Structured Coulomb Scattering}
@@ -129,7 +252,75 @@ We compare this below to four graphs of the coulomb potential, one pointlike and
 \end{figure}
 
 We see that this is exactly what was anticipated, that the pointlike coulomb scattering is indentical to the Rutherford cross section, wheras the case where the target (Nickel 58) has a radial extent shows no structure for low energy projectiles but has the expected forward peaking for high energy. \\
-\newpage
+
+\section{Proton-Nickel Analysis}
+\subsection{Differential Cross Sections}
+
+Here we examine the cross sections for the case of proton scattering on $^{58}$Ni with an optitcal potential paramaterized into volume, surface and spin-orbit components.  Below in figure 6.1 we have the full potential (left) and only the real terms included (right).  In all cases we see the cross section (plotted vs. the Rutherford cross section) approach 1 at 0 degrees.  This is expected as the coulomb component diverges strongly at 0 degrees and should dominate.  For the case of 5 MeV protons we see only small deviations away from the Rutherford cross section, since at this energy the Coulomb barrier is shielding the details of the optical potential.   
+
+
+ \begin{figure}[hbt]
+        \centering
+        \begin{subfigure}[b!]{0.45\textwidth}
+                \includegraphics[width=\textwidth]{FullUComp.PNG}
+        \end{subfigure}%
+        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
+          %(or a blank line to force the subfigure onto a new line)
+\quad
+        \begin{subfigure}[b!]{0.45\textwidth}
+                \includegraphics[width=\textwidth]{NoImuComparison.PNG}
+        \end{subfigure}
+
+        \caption{Differential Cross Sections for Proton Interactions}
+\end{figure}
+
+Below in figure 6.2 we have a comparision of the cross section with and without the imaginary part of the potential.  Seen in both the 5 MeV and 50 MeV cases the overall strength is reduced for the potential containing imaginary components.  This is expected as the loss of flux created by the imgainary potential should lower the probability of elastic scatterings.  
+
+ \begin{figure}[hbt]
+        \centering
+        \begin{subfigure}[b!]{0.45\textwidth}
+                \includegraphics[width=\textwidth]{5MeVUandNoUComp.PNG}
+        \end{subfigure}%
+        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
+          %(or a blank line to force the subfigure onto a new line)
+\quad
+        \begin{subfigure}[b!]{0.45\textwidth}
+                \includegraphics[width=\textwidth]{50MeVnoUandUcomp.PNG}
+        \end{subfigure}
+
+        \caption{Differential Cross Sections for Proton Interactions}
+\end{figure}
+ 
+
+\subsection{S-Matrix Components}
+Below in figure 6.3 we have the modulus of the S-Matrix vs. total J.  As one expects, the case where there is no imaginary component of the potential all the values are 1.  Without a loss of flux the S-Matrix must be unitary.  In the opposing case there is strong deviation from 1 for the lower partial waves.  Further it is seen that the values quickly converge around $L=10$, and despite this we have calculated all the way out to $L=100$.
+\begin{figure}[hbt]
+        \centering
+	\includegraphics[width=.5\textwidth]{SMatrixV_J.PNG}
+ \caption{Modulus of the S-Matrix values as a function of J}	
+\end{figure}
+
+
+\subsection{Increased Radii and Diffusiveness}
+
+Below in figure 6.4 the cross sections for different radii and diffuseness parameters are compared.  In both cases the values were increased by a factor of 1.5 in all the terms of the potential (volume, surface and spin-orbit).  On the left is the increased radius case.  Here the 5 MeV protons move farther from the pure Rutherford case as the extent of the nuclear interaction has been increased.  We see this also in the 50 MeV case where the overall trend tends to be amplified.  On right we have the increased diffuseness case.  Here we again see more deviation from pure Rutherford for the 5 MeV protons, but we also see a decrease in the backward angles.  If we had decreaed the diffuseness, making the potential more like a delta funcion, then we would expect there to be an increase in the backward angles.  As it becomes more diffuse there are more ways to scatter to foward angles, causing a decrease in backward angles.
+
+ \begin{figure}[hbt]
+        \centering
+        \begin{subfigure}[b!]{0.45\textwidth}
+                \includegraphics[width=\textwidth]{ChangedRadius.PNG}
+        \end{subfigure}%
+        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
+          %(or a blank line to force the subfigure onto a new line)
+\quad
+        \begin{subfigure}[b!]{0.45\textwidth}
+                \includegraphics[width=\textwidth]{ChangedDiff.PNG}
+        \end{subfigure}
+
+        \caption{Comparison of increased Radii (left) and diffuseness (right) to original potential values}
+\end{figure}
+
+
 \section{Neutron-Nickel Analysis}
 \subsection{Differential Cross Sections}
 We then consider the previous analysis using a similar potential model for the nuclear optical potential, but setting the charge of the projectile to 0, and changing the optical potential to be for n-scattering as found at \url{https://www-nds.iaea.org/cgi-bin/ripl_om_param.pl?Z=28&A=58&ID=1417&E1=0.1&E2=150}. The results of this are plotted below.\\
@@ -155,9 +346,9 @@ We can see in this case that the distributions are sharply peaked near zero, wit
 \subsection{Increased Diffuseness}
 
 In this case, I have set the diffuseness paramaeter to be ten times larger than in the standard found in the previous optical potential. This results in a cross section as follows(for 5 MeV):\\
-\begin{figure}[hbt]
+\begin{figure}[!hbt]
 \centering
-\includegraphics[width=\textwidth]{NeutronDiff.png}
+\includegraphics[width=.5\textwidth]{NeutronDiff.png}
 \end{figure}
 
 We see that for increased diffusiveness that the forward cross section becomes nearly infinite, in comparison to the Rutherford cross section, which follows because at a near infinitely large diffusive constant the potential is nearly zero in any area and so has no effect on the trajectory. Thus the particle will continue unperturbed, and so have a scattering angle of 0. As such it follows that this will be much larger than the Rutherford cross section which in principle should allow for no such scattering. What's more, the diffuseness means the imaginary potential absorbs less and so the cross section becomes much larger.\\
@@ -169,7 +360,7 @@ In this case we consider a radius parameter in the optical potential to also be 
 
 \begin{figure}[hbt]
 \centering
-\includegraphics[width=\textwidth]{NeutronRad.png}
+\includegraphics[width=.5\textwidth]{NeutronRad.png}
 \end{figure}
 
 \subsection{Different Strength of Imaginary Potentials}
@@ -192,7 +383,6 @@ These are plotted below:
 
         \caption{Differential Cross Sections for Neutron-Ni58 with Varying Imaginary Potentials}
 \end{figure}
-\newpage
 We note that in this instance we don't seem to have the same agreement expected, as it would appear that there is a larger cross section with the strong imaginary potential. However, instead we should look at the modul of the S matricesi for different L states, which will show the overall absorption. These are plotted below:\\
 
 
