@@ -6,7 +6,11 @@ import os
 def GetCrossSectionData(f):
     arr=np.genfromtxt(f,skiprows=14,skip_footer=1)
     return arr
-
+def GetSMatData(f):
+    arr=np.genfromtxt(f,skip_footer=1)
+    mods=np.abs(arr[:,0]+1j*arr[:,1])
+    Ls=arr[:,2]
+    return np.array([Ls,mods])
 def twodplot(x,y,title,xaxis,yaxis):
     fig=plt.figure()
     ax2=fig.add_subplot(111)
@@ -14,40 +18,24 @@ def twodplot(x,y,title,xaxis,yaxis):
     plt.title(title)
     plt.xlabel(xaxis)
     plt.ylabel(yaxis)
-#l="Ni58coulombpointlikepoint1MeV"
-#h="pointlikeNi58CoulombEn50MeV"
-#hc="Ni58coulombEn50MeV"
-#lc="Ni58coulombpoint1MeV"
-
-#files=[]
 di='C:\\Users\\Charles\\Documents\\frescoreactions\\reactions\\'
-
 Neu50=GetCrossSectionData(di+"Ni58Neutron50MeV\\fort.16")
 Neu5=GetCrossSectionData(di+"Ni58Neutron5MeV\\fort.16")
+Neurad=GetCrossSectionData(di+"Neutronradius\\fort.16")
+Neudiff=GetCrossSectionData(di+"Neutrondiffuse\\fort.16")
+NeuWeakcs=GetCrossSectionData(di+"NeutronWeakImaginary5MeV\\fort.16")
+NeuStrongcs=GetCrossSectionData(di+"NeutronStrongImaginary5MeV\\fort.16")
+NeuWeaks=GetSMatData(di+"NeutronWeakImaginary5MeV\\fort.7")
+NeuStrongs=GetSMatData(di+"NeutronStrongImaginary5MeV\\fort.7")
+twodplot(Neu5[:,0],Neu5[:,1],"Neutron-Nickel 58 Cross Section for 5 MeV","Angle (Degrees)", "Differential Cross Section(relative to Rutherford")
+twodplot(Neu50[:,0],Neu50[:,1],"Neutron-Nickel 58 Cross Section for 50 MeV","Angle (Degrees)", "Differential Cross Section(relative to Rutherford")
+twodplot(Neudiff[:,0],Neudiff[:,1],"Neutron-Nickel 58 Cross Section for 5 MeV with increased diffusiveness","Angle (Degrees)", "Differential Cross Section(relative to Rutherford")
+twodplot(Neurad[:,0],Neurad[:,1],"Neutron-Nickel 58 Cross Section for 5 MeV with increased radius","Angle (Degrees)", "Differential Cross Section(relative to Rutherford")
+twodplot(NeuStrongcs[:,0],NeuStrongcs[:,1],"Neutron-Nickel 58 Cross Section for 5 MeV with strong imaginary potential","Angle (Degrees)", "Differential Cross Section(relative to Rutherford")
+twodplot(NeuWeakcs[:,0],NeuWeakcs[:,1],"Neutron-Nickel 58 Cross Section for 5 MeV with weak imaginary potential","Angle (Degrees)", "Differential Cross Section(relative to Rutherford")
+twodplot(NeuStrongs[0],NeuStrongs[1],"Neutron-Nickel 58 SMatrix Moduli for 5 MeV with strong imaginary potential","Angular Momentum", "SMatrix Moduli")
+twodplot(NeuWeaks[0],NeuWeaks[1],"Neutron-Nickel 58 SMatrix Moduli for 5 MeV with weak imaginary potential","Angular Momentum", "SMatrix Moduli")
 
-twodplot(Neu50[:,0],Neu50[:,1],"Neutron-Nickel 58 Cross Section for E=50 MeV","Angle (Degrees)", "Differential Cross Section(relative to Rutherford")
-twodplot(Neu5[:,0],Neu5[:,1],"Neutron-Nickel 58 Cross Section for E=5 MeV","Angle (Degrees)", "Differential Cross Section(relative to Rutherford")
 
 
-
-#for folder in os.listdir(di):
-#    files.append(di+folder+"\\fort.16")
-#print(os.listdir(di))
-#f=files[1]
-#a=np.loadtxt(files[1],comments='@',usecols=(0,1))
-#a=np.genfromtxt(f,comments='@',skiprows=10,skip_footer=1)
-# lowenpoint=GetCrossSectionData(di+l+"\\fort.16")
-# twodplot(lowenpoint[:,0],lowenpoint[:,1],"Pointlike Coulomb Scattering p-Ni58, E=.1 MeV","Angle (Degrees)","Differential Cross Section (Relative to Rutherford)")
-# highenpoint=GetCrossSectionData(di+h+"\\fort.16")
-# twodplot(highenpoint[:,0],highenpoint[:,1],"Pointlike Coulomb Scattering p-Ni58, E=50 MeV","Angle (Degrees)","Differential Cross Section (Relative to Rutherford)")
-# highc=GetCrossSectionData(di+hc+"\\fort.16")
-# lowc=GetCrossSectionData(di+lc+"\\fort.16")
-# twodplot(highc[:,0],highc[:,1],"Coulomb Scattering p-Ni58, E=50 MeV","Angle (Degrees)","Differential Cross Section (Relative to Rutherford)")
-# twodplot(lowc[:,0],lowc[:,1],"Coulomb Scattering p-Ni58, E=.1 MeV","Angle (Degrees)","Differential Cross Section (Relative to Rutherford)")
-#xs=[]
-#ys=[]
-#for item in a:
-#    xs.append(item[0])
-#    ys.append(item[1])
-#plt.plot(a[:,0],a[:,1])
 plt.show()
