@@ -11,7 +11,7 @@ def GetSMatData(f):
     mods=np.abs(arr[:,0]+1j*arr[:,1])
     Ls=arr[:,2]
     return np.array([Ls,mods])
-def twodplot(x,y,title,xaxis,yaxis,fig=None,leg=None):
+def twodplot(x,y,title,xaxis,yaxis,fig=None,leg=None,log=False):
     if(fig==None):
         fig=plt.figure()
         ax2=fig.add_subplot(111)
@@ -27,6 +27,8 @@ def twodplot(x,y,title,xaxis,yaxis,fig=None,leg=None):
     handles, labels = ax2.get_legend_handles_labels()
     if any(labels):
         ax2.legend(handles[::-1], labels[::-1])
+    if log:
+        ax2.set_yscale('log')
     return fig
 di='C:\\Users\\Charles\\Documents\\frescoreactions\\reactions\\'
 Neu50=GetCrossSectionData(di+"Ni58Neutron50MeV\\fort.16")
