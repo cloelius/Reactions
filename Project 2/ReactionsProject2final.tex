@@ -304,20 +304,11 @@ We then consider the previous analysis using a similar potential model for the n
 
  \begin{figure}[hbt]
         \centering
-        \begin{subfigure}[b!]{0.35\textwidth}
-                \includegraphics[width=\textwidth]{NeutronNi5.png}
-        \end{subfigure}%
-        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-          %(or a blank line to force the subfigure onto a new line)
-\quad
-        \begin{subfigure}[b!]{0.35\textwidth}
-                \includegraphics[width=\textwidth]{NeutronNi50.png}
-        \end{subfigure}
-
+	\includegraphics[width=.6\textwidth]{CrossSectionsNEns}
         \caption{Differential Cross Sections for Neutron Interactions}
 \end{figure}
 
-We can see in this case that the distributions are sharply peaked near zero, with the major difference being in the extreme sharpness of the 50 MeV compared to a somewhat  broader peak for the 5 MeV. This makes sense because in the absence of a Coulomb interaction, the only potential is the optical potential.  The 50 MeV neutron has a larger energy compared to the optical potential and so is less affected. However, the 5 MeV neutron, no longer prevented from interacting with the optical potential due to the Coulomb force, is likely to interact more with the optical potential. This explains the broader scattering. We might expect something similar as energy decreases and the optical potential causes further interactions. However, this must be reconciled with an expected decrease in flux caused by increase interactions with the imaginary potential.\\
+We can see in this case that the distributions are sharply peaked near zero, with the major difference being in the extreme sharpness of the 50 MeV compared to a somewhat  broader peak for the 5 MeV. This makes sense because the 50 MeV neutron has a larger energy compared to the optical potential and so is less affected. However, the 5 MeV neutron  is likely to interact more with the optical potential. This explains the broader scattering. We might expect something similar as energy decreases and the optical potential causes further interactions. However, this must be reconciled with an expected decrease in flux caused by increase interactions with the imaginary potential.We note that in this instance the cross sections are not being compared to the infinite rutherford and so in principle has a smaller forward cross section than the proton scattering. \\
 
 \subsection{Increased Diffuseness}
 
@@ -347,41 +338,36 @@ These are plotted below:
 
  \begin{figure}[hbt!]
         \centering
-        \begin{subfigure}[b!]{0.35\textwidth}
-                \includegraphics[width=\textwidth]{NeutronWeakcs.png}
-        \end{subfigure}%
-        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-          %(or a blank line to force the subfigure onto a new line)
-\quad
-        \begin{subfigure}[b!]{0.35\textwidth}
-                \includegraphics[width=\textwidth]{NeutronStrongcs.png}
-        \end{subfigure}
-
+\includegraphics[width=.6\textwidth]{Imcross}
         \caption{Differential Cross Sections for Neutron-Ni58 with Varying Imaginary Potentials}
 \end{figure}
-We note that in this instance we don't seem to have the same agreement expected, as it would appear that there is a larger cross section with the strong imaginary potential. However, instead we should look at the modulus of the S matrices for different L states, which will show the overall absorption. These are plotted below:\\
+We note that in this instance we don't seem to have the same agreement expected, as it would appear that there is a larger cross section with the strong imaginary potential. However, we must recall that the angular integrated cross section picks up a factor of $\sin\theta$, and so the total cross section picks up very little of the forward cross section. For a better understanding instead we should look at the modulus of the S matrices for different L states, which will show the overall absorption. These are plotted below:\\
 
 
  \begin{figure}[hbt!]
         \centering
-        \begin{subfigure}[b!]{0.35\textwidth}
-                \includegraphics[width=\textwidth]{NeutronWeaks.png}
-        \end{subfigure}%
-        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-          %(or a blank line to force the subfigure onto a new line)
-\quad
-        \begin{subfigure}[b!]{0.35\textwidth}
-                \includegraphics[width=\textwidth]{NeutronStrongs.png}
-        \end{subfigure}
+\includegraphics[width=.6\textwidth]{NeutronSms}
 
         \caption{Moduli of S-Matrix for Neutron-Ni58 with Varying Imaginary Potentials}
 \end{figure}
 
 Here we see clearly that especially at low angular momenta the strong imagnary potential starts with a much smaller S matrix than that of the weak potential, and only slowly converges to 1 with a large L. \\
 
+Finally we compare to the total cross sections, shown in the table below:\\
+\begin{table}
+\centering
+\begin{tabular} {|c|c|c|c|}
+Energy(MeV) & Imaginary Potential & Elastic Cross Section(mbarns) & Total Cross Section(mbarns)\\
+50 & Weak & 3431 & 3431\\
+50 & Strong & 1908 & 3973\\
+5 & Weak & 2512 & 2512 \\
+5 & Strong & 2420 & 4838 \end{tabular}\caption{Cross Sections for Varied Energies and Potentials}\end{table}
+
+We can see clearly that while the change in energy can obscure the importance of the strong and weak potentials, the fact that the strong potential leads to about half of the total cross section being absorbed is very clear, be it for 50 or 5 MeV. This is as might be anticipated. However, the fact that the potential was scaled so the volume and surface terms were equally as important obscures some of the more complicated features between energy and absorption, since increased energy will lead to more influence of the volume term than the surface term, and of course the opposite holds as well.
+
 \section{Total Cross Sections}
 
-We return to the 5 and 50 MeV neutron-Ni58 scattering previously examined, note that in the output files generated there is in fort.40 a description of the cross sections. We plot the results in the table below:\\
+We return to the 5 and 50 MeV neutron-Ni58 scattering previously examined, noting that in the output files generated there is in fort.40 a description of the cross sections. We plot the results in the table below:\\
 
 \begin{table}[hbt!]
 \centering

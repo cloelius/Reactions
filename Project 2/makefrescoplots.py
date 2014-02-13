@@ -40,14 +40,12 @@ NeuStrongcs=GetCrossSectionData(di+"NeutronStrongImaginary5MeV\\fort.16")
 NeuWeaks=GetSMatData(di+"NeutronWeakImaginary5MeV\\fort.7")
 NeuStrongs=GetSMatData(di+"NeutronStrongImaginary5MeV\\fort.7")
 Neuen=twodplot(Neu5[:,0],Neu5[:,1],"Neutron-Nickel 58 Cross Section","Angle (Degrees)", "Differential Cross Section(mbarn per radian)",leg="5 MeV",log=True)
-twodplot(Neu50[:,0],Neu50[:,1],"Neutron-Nickel 58 Cross Section for 50 MeV","Angle (Degrees)", "Differential Cross Section(relative to Rutherford",fig=Neuen,leg="50 MeV")
+twodplot(Neu50[:,0],Neu50[:,1],"Neutron-Nickel 58 Cross Section for 50 MeV","Angle (Degrees)", "milibarn per radian",fig=Neuen,leg="50 MeV")
 #twodplot(Neudiff[:,0],Neudiff[:,1],"Neutron-Nickel 58 Cross Section for 5 MeV with increased diffusiveness","Angle (Degrees)", "Differential Cross Section(relative to Rutherford",leg="hi")
 #twodplot(Neurad[:,0],Neurad[:,1],"Neutron-Nickel 58 Cross Section for 5 MeV with increased radius","Angle (Degrees)", "Differential Cross Section(relative to Rutherford")
 impots=twodplot(NeuStrongcs[:,0],NeuStrongcs[:,1],"Neutron-Nickel 58 Cross Section for 5 MeV with varied potentials","Angle (Degrees)", "Differential Cross Section(milibarns/rad)",leg="Strong Imaginary Potential")
 twodplot(NeuWeakcs[:,0],NeuWeakcs[:,1],"Neutron-Nickel 58 Cross Section for 5 MeV with weak imaginary potential","Angle (Degrees)", "Differential Cross Section(relative to Rutherford",fig=impots,leg="Weak Imaginary Potential")
 ims=twodplot(NeuStrongs[0],NeuStrongs[1],"Neutron-Nickel 58 SMatrix Moduli for 5 MeV","Angular Momentum", "SMatrix Moduli",leg="Strong Imaginary Potential")
 twodplot(NeuWeaks[0],NeuWeaks[1],"Neutron-Nickel 58 SMatrix Moduli for 5 MeV with weak imaginary potential","Angular Momentum", "SMatrix Moduli",fig=ims,leg="Weak Imaginary Potential")
-
-
 
 plt.show()
