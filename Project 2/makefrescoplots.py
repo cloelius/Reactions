@@ -31,6 +31,15 @@ def twodplot(x,y,title,xaxis,yaxis,fig=None,leg=None,log=False):
         ax2.set_yscale('log')
     return fig
 di='C:\\Users\\Charles\\Documents\\frescoreactions\\reactions\\'
+ProtonPoint5=GetCrossSectionData(di+"pointlikeNi58Coulomb5Mev\\fort.16")
+ProtonPoint50=GetCrossSectionData(di+"pointlikeNi58CoulombEn50Mev\\fort.16")
+Proton5=GetCrossSectionData(di+"Ni58CoulombEn5Mev\\fort.16")
+Proton50=GetCrossSectionData(di+"Ni58CoulombEn50Mev\\fort.16")
+ProtPlot=twodplot(Proton5[:,0],Proton5[:,1],"Proton-Ni58 Cross Sections for Pointlike and Non-pointlike Nuclei","Angle(degrees)","Differential Cross Section(mbarn per radian)",leg="5MeV r=1.2")
+twodplot(Proton50[:,0],Proton50[:,1],"Proton-Ni58 Cross Sections for Pointlike and Non-pointlike Nuclei","Angle(degrees)","Differential Cross Section(mbarn per radian",leg="50MeV r=1.2",fig=ProtPlot)
+twodplot(ProtonPoint5[:,0],ProtonPoint5[:,1],"Proton-Ni58 Cross Sections for Pointlike and Non-pointlike Nuclei","Angle(degrees)","Differential Cross Section(mbarn per radian",leg="5MeV pointlike",fig=ProtPlot)
+twodplot(ProtonPoint50[:,0],ProtonPoint50[:,1],"Proton-Ni58 Cross Sections for Pointlike and Non-pointlike Nuclei","Angle(degrees)","Differential Cross Section(mbarn per radian",leg="50MeV pointlike",fig=ProtPlot)
+
 Neu50=GetCrossSectionData(di+"Ni58Neutron50MeV\\fort.16")
 Neu5=GetCrossSectionData(di+"Ni58Neutron5MeV\\fort.16")
 Neurad=GetCrossSectionData(di+"Neutronradius\\fort.16")

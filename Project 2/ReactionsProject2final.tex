@@ -204,26 +204,7 @@ We compare this below to four graphs of the Coulomb potential, one pointlike and
 
  \begin{figure}[hbt]
         \centering
-        \begin{subfigure}[b!]{0.35\textwidth}
-                \includegraphics[width=\textwidth]{PointlikeEpoint1.png}
-        \end{subfigure}%
-        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-          %(or a blank line to force the subfigure onto a new line)
-\quad
-        \begin{subfigure}[b!]{0.35\textwidth}
-                \includegraphics[width=\textwidth]{PointlikeE50.png}
-        \end{subfigure}
-\\
-        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-          %(or a blank line to force the subfigure onto a new line)
-        \begin{subfigure}[b]{0.35\textwidth}
-                \includegraphics[width=\textwidth]{Coulombpoint1.png}
-        \end{subfigure}
-\quad
-        \begin{subfigure}[b]{0.35\textwidth}
-                \includegraphics[width=\textwidth]{Coulomb50.png}
-        \end{subfigure}
-
+        \includegraphics[width=.6\textwidth]{Pointcompare}
         \caption{Comparison of Pointlike (top) and Extended (bottom) Coulomb Cross Sections }
 \end{figure}
 
@@ -312,22 +293,34 @@ We can see in this case that the distributions are sharply peaked near zero, wit
 
 \subsection{Increased Diffuseness}
 
-In this case, I have set the diffuseness parameter to be ten times larger than in the standard parameter found in the previous optical potential. This results in a cross section as follows (for 5 MeV):\\
+In this case, I have set the diffuseness parameter to be times larger than in the standard parameter found in the previous optical potential. This results in a cross section as follows (for 50 MeV):\\
 \begin{figure}[!hbt]
 \centering
-\includegraphics[width=.4\textwidth]{NeutronDiff.png}
+\includegraphics[width=.6\textwidth]{NeutronDiff.png}
 \end{figure}
 
-We see that for increased diffuseness that the forward cross section becomes nearly infinite, in comparison to the Rutherford cross section, which follows because at a near infinitely-large diffuse constant the potential is nearly zero in any area and so has no effect on the trajectory. Thus the particle will continue unperturbed, and so have a scattering angle of 0. As such it follows that this will be much larger than the Rutherford cross section which in principle should allow for no such scattering. What's more, the diffuseness means the imaginary potential absorbs less and so the cross section becomes much larger.\\
+We see in this case that the increased diffusiveness reduces substantially the amount of backwards scattering, as we would expect. Naively, this is akin to replacing the Rutherford model of the nucleus with something ore akin to the "plum pudding model", and so diminishing its concentrated strength which allows for backwards scattering. Of course, this interpretation is only very rough, as of course the coulomb interaction is irrelevant in this instance, but the general picture of a more or less pointlike source being more or less capable of deflecting particles at large angles is still a useful way to think about this situation.
+
+
 
 
 \subsection{Increased Radius}
 
-In this case we consider a radius parameter in the optical potential to also be ten times larger than in the potential defined above. This has the effect of increasing the range over which the potential is strong, and so increases the overall effect of the potential, leaving a larger relative amount of the cross section over which to be scattered. However, it also increases the surface area and volume, which means that there is an increased probability for absorption through the imaginary potential and so an overall smaller cross section.
+In this case we consider a radius parameter in the optical potential to be larger than in the potential defined above. This has the effect of increasing the range over which the potential is strong, and so increases the overall effect of the potential, leaving a larger relative amount of the cross section over which to be scattered. This leads to an increase in larger angle scattering since there is a wider range over which these angles can be reached. However, it also increases the surface area and volume, which means that there is an increased probability for absorption through the imaginary potential and so could contribute to an overall smaller cross section. In addition we see a change in the oscillatory behaviour of the cross section. We can understand this in a naive model if we consider the simple case of a finite square well as an exceptionally rough approximation to the infinite but quickly vanishing optical potential. In this case, recognizing that the incoming particle has its own De Broigle wavelength, we would expect a certain diffraction patern. As the radius of the well changes, it will shift the transmission and reflection probabilities, thus changing the overall diffraction patern. While this is a simple model, it nonetheless this does explain some of the results, for example the far more quickly oscillating behaviour of the 50 MeV cross section, and the somewhat linear slight phase shift there as r increases(most clearly seen in  the ~20 radians regime. It also explains the far from linear phase shifting and amplitude modifying behaviour in the 5MeV case, as in this case the De Broigle wavelength is much larger, and so we would expect it to be closer to the radius of the potential well. Hence it  would be anticpated to be affected more by the change in radius of the potential well. 
+
 
 \begin{figure}[hbt]
 \centering
-\includegraphics[width=.4\textwidth]{NeutronRad.png}
+\begin{subfigure}[b!]{.45\textwidth}
+\includegraphics[width=\textwidth]{NeutronRad5.png}
+\caption{5 MeV}
+\end{subfigure}
+\quad
+\begin{subfigure}[b!]{.45\textwidth}
+\includegraphics[width=\textwidth]{NeutronRad50.png}
+\caption{50 MeV}
+\end{subfigure}
+\caption{Cross Sections For Varied Radii}
 \end{figure}
 
 \subsection{Different Strength of Imaginary Potentials}
@@ -353,8 +346,8 @@ We note that in this instance we don't seem to have the same agreement expected,
 
 Here we see clearly that especially at low angular momenta the strong imagnary potential starts with a much smaller S matrix than that of the weak potential, and only slowly converges to 1 with a large L. \\
 
-Finally we compare to the total cross sections, shown in the table below:\\
-\begin{table}
+Finally we compare to the total cross sections, shown in the table below(Where the weak imaginary has no imaginary potential, and the strong has each of the imaginary strengths as 20.):\\
+\begin{table}[hbt!]
 \centering
 \begin{tabular} {|c|c|c|c|}
 Energy(MeV) & Imaginary Potential & Elastic Cross Section(mbarns) & Total Cross Section(mbarns)\\
@@ -363,7 +356,7 @@ Energy(MeV) & Imaginary Potential & Elastic Cross Section(mbarns) & Total Cross 
 5 & Weak & 2512 & 2512 \\
 5 & Strong & 2420 & 4838 \end{tabular}\caption{Cross Sections for Varied Energies and Potentials}\end{table}
 
-We can see clearly that while the change in energy can obscure the importance of the strong and weak potentials, the fact that the strong potential leads to about half of the total cross section being absorbed is very clear, be it for 50 or 5 MeV. This is as might be anticipated. However, the fact that the potential was scaled so the volume and surface terms were equally as important obscures some of the more complicated features between energy and absorption, since increased energy will lead to more influence of the volume term than the surface term, and of course the opposite holds as well.
+We can see clearly that while the change in energy can obscure the importance of the strong and weak potentials, the fact that the strong potential leads to about half of the total cross section being absorbed is very clear, be it for 50 or 5 MeV. This is as might be anticipated. However, the fact that the potential was scaled so the volume and surface terms were equally as important obscures some of the more complicated features between energy and absorption that can be noticed in the optical potential models like those linked to, since increased energy will lead to more influence of the volume term than the surface term, and of course the opposite holds as well. 
 
 \section{Total Cross Sections}
 
