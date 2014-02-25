@@ -1,0 +1,23 @@
+p+ni58 -> p+ni58* @ 50 MeV; nuc def
+NAMELIST
+&FRESCO hcm=0.05 rmatch=20.0
+        jtmin=0.0 jtmax=40 absend= -1    thmin=0.00 thmax=180.00 thinc=1.00
+        iter=1 ips=0.0 iblock=0 chans=1 smats=2  xstabl=1
+        elab(1)=50.0 /
+
+ &PARTITION namep='p' massp=1.0000 zp=1
+            namet='58Ni'   masst=58.000 zt=28 qval=0.0 nex=2  /
+ &STATES jp=0.5 bandp=1 ep=0.0000 cpot=1 jt=0.0 bandt=1 et=0.00 /
+ &STATES copyp=1 		 cpot=1 jt=2.0 bandt=1 et=1.454 /
+ &partition /
+
+ &POT kp=1 ap=1.000 at=58.000 rc=1.2  /
+ &POT kp=1 type=1  p1=48.3 p2=1.19 p3=0.66 p4=5.2 p5=1.19 p6=0.66  /
+ &POT kp=1 type=11         p2=0.849 /
+ &POT kp=1 type=2  p1=0.00 p2=0.00 p3=0.00 p4=4.4 p5=1.28 p6=0.55  /
+ &POT kp=1 type=11         p2=0.849 /
+ &POT kp=1 type=3  p1=4.9  p2=1.00 p3=0.58 p4=0.0 p5=1.00 p6=0.58  /
+ &POT kp=1 type=11         p2=0.849 /
+ &pot /
+ &overlap /
+ &coupling /
