@@ -39,7 +39,7 @@ VolumeReal="C:\\Users\\Charles\\Documents\\Assignment4\\Ni58ActualValuesWithModi
 VolumeAll="C:\\Users\\Charles\\Documents\\Assignment4\\Ni58ActualValuesWithModifyingPotentials\\VolumeAll\\fort.16"
 
 data=GetCrossSectionData(SpinOrbitAll)
-fig=twodplot(data[:,0],data[:,1],"Fresco Wavefunctions for Ni 58 +p scattering at 16 MeV", "Angle(theta)", "Cross Section(mb/sr)",leg="Spin Orbit With All Terms Varied")
+fig=twodplot(data[:,0],data[:,1],"Fresco Cross Sections for Ni 58 +p scattering at 16 MeV", "Angle(theta)", "Cross Section(mb/sr)",leg="Spin Orbit With All Terms Varied")
 spinorbdat=GetCrossSectionData(SpinOrbit)
 twodplot(spinorbdat[:,0],spinorbdat[:,1],fig=fig,leg="Spin Orbit Terms Added, Strength and r varied")
 surflim=GetCrossSectionData(SurfcaeLimited)
@@ -62,9 +62,14 @@ axes.scatter(ActualData[:,0],ActualData[:,1],label="Actual Data")
 handles, labels = axes.get_legend_handles_labels()
 if any(labels):
         axes.legend(handles[::-1], labels[::-1],loc=2)
-axes.set_yscale('log')
+#axes.set_yscale('log')
 
-fig1=twodplot(volall[:,0],volall[:,1],"Comparison of Effects of Imaginary Term of Fresco Wavefunctions for Ni 58 +p scattering at 16 MeV", "Angle(theta)", "Cross Section(mb/sr)",leg="Volume Imaginary")
+fig1=twodplot(volall[:,0],volall[:,1],"Comparison of Effects of Imaginary Term of Fresco Cross Sections for Ni 58 +p scattering at 16 MeV", "Angle(theta)", "Cross Section(mb/sr)",leg="Volume Imaginary")
 twodplot(surflim[:,0],surflim[:,1],fig=fig1,leg="Surface Imaginary Term")
-
+fig2=plt.figure()
+axes2=fig2.gca()
+axes2.scatter(ActualData[:,0],ActualData[:,1])
+plt.title("Differential Cross Section Data for Ni-58+p at 16 MeV")
+plt.ylabel("Differential Cross Section mb/sr")
+plt.xlabel("Angle(Degrees)")
 plt.show()

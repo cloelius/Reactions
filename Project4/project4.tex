@@ -5,7 +5,7 @@
 % See "book", "report", "letter" for other types of document.
 
 \documentclass[11pt]{article} % use larger type; default would be 10pt
-
+\usepackage{placeins}
 \usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
 
 %%% Examples of Article customizations
@@ -48,7 +48,7 @@
 \usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
 \renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
 \renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
-
+\usepackage{hyperref}
 %%% END Article customizations
 
 %%% The "real" document content comes below...
@@ -63,6 +63,156 @@
 
 \section{$^{58}\texttt{Ni}+p $ reaction at 16 MeV}
 
-We begin this section by considering the 
+We begin this section by finding a global optical potential for the reaction, which I attach in the appendices and which can be found here: \url{LINK}.
+
+We then find experimental values for the cross sections from \url{LINK}. I plot this below to see the experimental data points. \\
+
+
+\section{Comparison of Fits}
+
+In order to compare the effects of different parameters being fit, we create a number of input files using the optical potential attached in the appendices. Namely, we create an input file for the real volume potential alone, the real volume potential and imaginary volume potential, the real volume potential and imaginary surface potential, the real and imaginary volume and surface potential, and finally the spin orbit terms.  We then create a number of different sfresco input files, which incorporate further fitting of the terms. Most of these involve only the radius terms and strength terms, but the last also includes the diffuseness terms as well. In all cases we begin searching at the values given by the optical potential. The cross sections are plotted below.\\
+\FloatBarrier
+\begin{figure}[hbt!]
+\includegraphics[width=.95\linewidth]{wavefunctions}
+\caption{Cross Section Data for Different Optical Parameters Varied}
+\end{figure}
+\FloatBarrier
+\renewcommand{\arraystretch}{1.5}
+
+We can see from this the vast improvement as the first terms, and particularly the first imaginary terms are added. However, it is clear that further terms change the agreement only slightly. For example, adding the spin orbit term primarily increases agreement in the tail near 180 degrees. We can also see that varying all the parameters(save the coulomb) does not change the form much from the case when the surface imaginary term, volume term, volume imaginary term and spin orbit term are considered. This suggests that the diffuseness is relatively unimportant if the radii are included, and that even the radius is not extremely important for the spin orbit term.
+
+The chi square values of these are then printed in the table below:\\
+\begin{table}[hbt!]
+\centering
+\caption{Chi Squares For Different SFresco Variations}
+\resizebox{.8\linewidth}{!}{
+
+\centering
+
+\begin{tabular}{p{.8\linewidth}|c}
+Parameters Considered & Chi Value\\
+\hline
+Volume Strength (V) & 23120.110\\
+\hline
+Volume Strength and Radius(V,r) & 23120.110\\
+\hline
+Volume Strength, Radius, Imaginary Strength, Imaginary Radius (V,r,W,Wr) &109.758\\
+\hline
+Volume Strength, Radius, Surface Imaginary Strength,  Radius(V,r,WD,$r_d$) &45.549\\
+\hline
+Volume Strength,Radius,Imaginary Strength, Surface Imaginary Strength and Radius(V,r,W,WD,$r_d$)&18.433\\
+\hline
+Volume Strength, Radius, Diffuseness, Imaginary Strength, Surface Imaginary Strength and radius, Spin Orbit Strength(V,r,a,W,WD,$r_d$,$V_{so}$)&5.902\\
+\hline
+All 18 Potential Variables for Volume, Surface and Spin Orbit & 3.41
+
+\end{tabular}
+}\end{table}
+\FloatBarrier
+These values show two things. The first is obviously that the chi squared value gets much closer to 1 as the number of varied parameters increases. This is of course resonable as multiple parameters gives more fitting possibilities, in an analogous way that any n points can be fit by an nth order polynomial. However, the second point to note is that in particular we see that the addition of imaginary volume terms is vital for getting the chi squared value to a remotely reasonable value(i.e. values <200). This suggests the extreme importance of absorption into other channels at the 16 MeV energy interaction here. However, at the same time, it is also worth noting that while the total variation gets a chi squared close to $3.4$, it is still not quite in the range of 1. This suggests that, as we can expect, the optical potential as a phenomoneological method misses some of the fine details of the interaction.\\
+ 
+\section{Comparison of Parameter Covariances}
+
+Next we want to see how the original choice of parameters affects the covarience matrix, which is a measure of correlation ranging from 1 to -1. To do this, we use the optical potential, and modify the 7 terms Volume Strength, Radius, Diffuseness, Imaginary Strength, Surface Imaginary Strength and radius, Spin Orbit Strength(V,r,a,W,WD,$r_d$,$V_{so}$). Begining with the optical model, we then change the original guess of these parameters to be $0, \frac{1}{2},1,2$ times the original parameter. The matricies for these are shown before\\
+\FloatBarrier
+\begin{table}[hbt!]
+\centering
+\caption{ Correlation Matrix for Original Parameters X 0}
+\begin{tabular}{c|c|c|c|c|c|c|c}
+Parameter & V & r & a& W & WD& $r_{WD}$  &$ V_{SO}$\\
+\hline
+V & 1 & 0.236 &-0.256 &0.309 & 0.109 & -0.448 & 0.439\\
+\hline
+r & 0.236 & 1 & -0.998 & 0.986 & -0.781 &0.089 & 0.123\\
+\hline
+a&-0.256 & -0.998 & 1 & -0.992 & 0.755 & -0.046 & 0.081\\
+\hline
+W&0.309 &0.986 &-0.992 & 1 & -0.670 & -0.76 & 0.040\\
+\hline
+WD&0.109 &-0.781 & 0.755 & -0.670 & 1 & -0.689 & 0.714\\
+\hline
+$r_{WD}$&-0.448 & 0.089 &  -0.046 &-0.076 & -0.689 & 1 & -0.998\\
+\hline
+$V_{SO}$&0.439 & -0.123 &0.081 & 0.040 & 0.714 & -0.998 & 1
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\FloatBarrier
+\begin{table}[hbt!]
+\centering
+\caption{ Correlation Matrix for Original Parameters X $\frac{1}{2}$}
+\begin{tabular}{c|c|c|c|c|c|c|c}
+Parameter & V & r & a& W & WD& $r_{WD}$  &$ V_{SO}$\\
+\hline
+V & 1 & -0.192 &0.078 &0.365 & 0.110 & -0.145 & -0.314\\
+\hline
+r & -0.192 & 1 & 0.607 & -0.661 & -0.557 &0.734 & 0.574\\
+\hline
+a&0.078 & 0.607 & 1 & -0.134 & -0.407 & 0.085 &- 0.614\\
+\hline
+W&0.365 &-0.661 &-0.134 & 1 & 0.194 & -0.655 & 0.138\\
+\hline
+WD&0.110 &-0.557 & -0.407 & 0.194 & 1 & -0.738 & 0.564\\
+\hline
+$r_{WD}$&-0.145 & 0.734 &  0.085 &-0.655 & -0.738 & 1 & -0.451\\
+\hline
+$V_{SO}$&-0.314&-0.574 & -0.614 &0.138 & 0.564 & -0.451  & 1
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\FloatBarrier
+\begin{table}[hbt!]
+\centering
+\caption{ Correlation Matrix for Original Parameters X 1}
+\begin{tabular}{c|c|c|c|c|c|c|c}
+Parameter & V & r & a& W & WD& $r_{WD}$  &$ V_{SO}$\\
+\hline
+V & 1 & -0.973 &0.686 &-0.052 & -0.051 & 0.550 & 0.316\\
+\hline
+r & -0.973 & 1 & -0.801 & 0.113 & 0 &-0.64 & -0.353\\
+\hline
+a&0.686 & -0.801 & 1 & -0.190 & -0.013 & 0.842 &0.422\\
+\hline
+W&-0.052 &0.113 &-0.190 & 1 & -0.914 & 0.146 & 0.029\\
+\hline
+WD&-0.052 &0 & -0.013 & -0.914 & 1 & -0.330 & -0.220\\
+\hline
+$r_{WD}$&0.550 & -0.640 &  0.842 &0.146 & -0.330 & 1 & 0.230\\
+\hline
+$V_{SO}$&0.316&-0.353 & 0.422 &0.029 & -0.220 & 0.230  & 1
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+
+\FloatBarrier
+\begin{table}[hbt!]
+\centering
+\caption{ Correlation Matrix for Original Parameters X 2}
+\begin{tabular}{c|c|c|c|c|c|c|c}
+Parameter & V & r & a& W & WD& $r_{WD}$  &$ V_{SO}$\\
+\hline
+V & 1 & -0.991 &0.020 &0.798 & -0.783 & -0.867 & -0.068\\
+\hline
+r & -0.991 & 1 & -0.097 & -0.760 & 0.751 &0.853 & 0.069\\
+\hline
+a&0.020 & -0.097 & 1 & -0.337 & 0.256 & 0.334 &-0.058\\
+\hline
+W&0.798 &-0.760 &-0.337 & 1 & -0.966 & -0.687 & 0.032\\
+\hline
+WD&-0.783 &0.751 & 0.256 & -0.966 & 1 & 0.612 & 0.035\\
+\hline
+$r_{WD}$&-0.867 & 0.853 &  0.334 &-0.687 & 0.612 & 1 & 0.035\\
+\hline
+$V_{SO}$&-0.068&0.069 & -0.058 &-0.032 & 0.035 & 0.035  & 1
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+From these we can see that there are some substantial changes and a few similarities between each of these cases. We note first that in the case where we use the values of the optical potential that we have correlation coefficients between the real and imaginary strengths  that are very low, near 0, suggesting that these are unrelated and that the overall componeent due to real parts compared to imaginary parts is fairly well established. However, the real term is fairly correlated with the radii and difuseness parameters, which is sensible since something of the form $Ae^{-k(x-r)}=Be^{-kx}$ and so there is some indeterminacy in what is part of the radius and what the diffuseness, and what the strength. We see similarly that in all of the tables save the one with doubled initial parameters the radii and difuseness of the real volume term are heavily correlated. This is again as expected since these terms are multiplied by each other. However this does not hold in the 2x case. This may be because the settled value of these is such that one term becomes irrelevant. It is also possible, if less likely, that the correlation here becomes quadratic instead of linear and so misleadingly reads as zero. We can also see that in the 0,$\frac{1}{2}$, and 1 cases the spin orbit term is somewhat correlated to the real volume potential and radial terms. However in the 2 case, it is uncorrelated to anyhting, suggesting that here the finer effects of the spin orbit on the tail are minimial compared to that of the rather more radically changing volume and surface terms. We might also note that the x0 case shows heavy correlations between most of the variables, likely because here there is no natural ranking of what variables "ought" to dominate, so the imaginary volume and surface strength and radii ineract heavily with each other, and the spin orbit and volume terms do as well. In general from this we can see that while we may be able to get a fit for a particular nucleus, the original choice of parameters is critical in accurately determining reasonable optical model values. Furthermore, it is clear that the radial and difuseness terms are not capable of being easily and separately pinpointed, but must be based on other considerations. However, keeping these terms based on some global properties and varying strength terms instead should offer a reasonable means of determining these values.
+
+
 
 \end{document}
